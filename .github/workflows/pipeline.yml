@@ -46,7 +46,7 @@ jobs:
           cache: 'npm'
 
       - name: Install Dependencies
-        run: npm install
+        run: npm ci
 
       - name: Deploy to Azure App Service
         uses: azure/webapps-deploy@v2
