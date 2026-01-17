@@ -2,7 +2,7 @@ name: Task Management CI/CD
 
 on:
   push:
-    branches: [ main, app-service-deployment ]
+    branches: [ main ]
   pull_request:
     branches: [ main ]
 
@@ -17,7 +17,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: '20'
           cache: 'npm'
 
       - name: Install Dependencies
@@ -33,7 +33,7 @@ jobs:
   deploy:
     name: Deploy to Azure
     needs: test
-    if: github.ref == 'refs/heads/app-service-deployment' && github.event_name == 'push'
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Source
@@ -42,7 +42,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: '20'
           cache: 'npm'
 
       - name: Install Dependencies
